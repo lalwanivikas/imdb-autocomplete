@@ -53,11 +53,22 @@ $input.addEventListener('keyup', function(){
 		    		var poster = document.createElement('img');
 		    		poster.setAttribute('class', 'poster');
 		    		
+		    		// if(result.d[i].i) {
+			    	// 	var posterUrl = result.d[i].i[0];
+			    	// 	posterUrl = posterUrl.replace("._V1_.jpg", "._V1._SX40_CR0,0,40,54_.jpg");
+			    	// 	poster.setAttribute('src', posterUrl);
+		    		// }
+
 		    		if(result.d[i].i) {
-			    		var posterUrl = result.d[i].i[0];
-			    		posterUrl = posterUrl.replace("._V1_.jpg", "._V1._SX40_CR0,0,40,54_.jpg");
+			    		var imdbPoster = result.d[i].i[0];
+			    		imdbPoster = imdbPoster.replace("._V1_.jpg", "._V1._SX40_CR0,0,40,54_.jpg");
+			    		var posterUrl = 
+			    			"http://i.embed.ly/1/display/resize?key=798c38fecaca11e0ba1a4040d3dc5c07&url="
+			    			+ imdbPoster
+			    			+ "&height=54&width=40&errorurl=http%3A%2F%2Flalwanivikas.github.io%2Fimdb-autocomplete%2Fimg%2Fnoimage.png&grow=true"
 			    		poster.setAttribute('src', posterUrl);
 		    		}
+
 		    		//creating and setting description
 		    		var description = document.createElement('div');
 		    		description.setAttribute('class', 'description');
