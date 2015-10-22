@@ -14,7 +14,6 @@ $input.addEventListener('keyup', function(){
 	}
 	
 	if(cleanInput.length > 0) {
-		$result.innerHTML = "";
 		
 		var queryUrl = baseUrl + cleanInput[0].toLowerCase() + "/" 
 					  + cleanInput.toLowerCase()
@@ -28,7 +27,12 @@ $input.addEventListener('keyup', function(){
 		    jsonpCallback: "imdb$" + cleanInput.toLowerCase()
 		
 		}).done(function (result) {
-	    
+	    	
+	    	//clearing result div if there is a valid response
+	    	if(result.d.length > 0) {
+	    		$result.innerHTML = "";
+	    	}
+		    
 		    for(var i = 0; i < result.d.length; i++) {
 		    	
 		    	var category = result.d[i].id.slice(0,2);
@@ -48,16 +52,9 @@ $input.addEventListener('keyup', function(){
 		    		resultRow.setAttribute('href', destinationUrl);
 		    		resultRow.setAttribute('target', '_blank');
 		    		
-
 		    		//creating and setting poster
 		    		var poster = document.createElement('img');
 		    		poster.setAttribute('class', 'poster');
-		    		
-		    		// if(result.d[i].i) {
-			    	// 	var posterUrl = result.d[i].i[0];
-			    	// 	posterUrl = posterUrl.replace("._V1_.jpg", "._V1._SX40_CR0,0,40,54_.jpg");
-			    	// 	poster.setAttribute('src', posterUrl);
-		    		// }
 
 		    		if(result.d[i].i) {
 			    		var imdbPoster = result.d[i].i[0];
